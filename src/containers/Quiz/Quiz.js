@@ -5,8 +5,9 @@ import ActiveQuiz from '../../components/ActiveQuize/ActiveQuiz'
 class Quiz extends Component{
 
     state = {
+        activeQuestion: 0,
         quiz: [
-            {   
+            {   id: 1,
                 question: 'Какого цвета небо?',
                 rightAnswerId: 2,
                 answers: [
@@ -15,12 +16,26 @@ class Quiz extends Component{
                     {text: 'Красный', id: 3},
                     {text: 'Зелёный', id: 4}
                 ]
+            },
+            {   id: 2,
+                question: 'Сколько пальцев на руке?',
+                rightAnswerId: 3,
+                answers: [
+                    {text: '0', id: 1},
+                    {text: '2', id: 2},
+                    {text: '5', id: 3},
+                    {text: '10', id: 4}
+                ]
             }
         ]
     }
 
     onAnswerClickHandler = answerId =>{
         console.log('Answer ID ', answerId)
+
+        this.setState({
+            activeQuestion: this.state.activeQuestion + 1
+        })
     }
 
     render(){
@@ -30,9 +45,11 @@ class Quiz extends Component{
                     <h1>Тест IQ</h1>
 
                     <ActiveQuiz 
-                        answers={this.state.quiz[0].answers}
-                        question={this.state.quiz[0].question}
+                        answers={this.state.quiz[this.state.activeQuestion].answers}
+                        question={this.state.quiz[this.state.activeQuestion].question}
                         onAnswerClick={this.onAnswerClickHandler}
+                        quizLength={this.state.quiz.length}
+                        answerNumber={this.state.activeQuestion + 1}
                     />
                 </div>
             </div>
