@@ -17,7 +17,7 @@ export default class Auth extends Component {
                 touched: false,
                 validation: {
                     required: true,
-                    email: true
+                    email: true,
                 }
             },
             password: {
@@ -29,7 +29,7 @@ export default class Auth extends Component {
                 touched: false,
                 validation: {
                     required: true,
-                    minLength: 6
+                    minLength: 6,
                 }
             },
         }
@@ -87,16 +87,19 @@ export default class Auth extends Component {
     renderInputs () {
         return Object.keys(this.state.formControls).map((controlName, index) => {
             const control = this.state.formControls[controlName]
-            return <Input 
-                key={controlName + index}
-                type={control.type}
-                value={control.value}
-                touched={control.touched}
-                label={control.label}
-                shouldValidate={!!control.validation}
-                errorMessage={control.errorMessage}
-                onChange={event => this.onChangeHandler(event, controlName)}
-            />
+            return (
+                <Input 
+                    key={controlName + index}
+                    type={control.type}
+                    value={control.value}
+                    valid={control.valid}
+                    touched={control.touched}
+                    label={control.label}
+                    shouldValidate={!!control.validation}
+                    errorMessage={control.errorMessage}
+                    onChange={event => this.onChangeHandler(event, controlName)}
+                />
+            )
         })
     }
 
