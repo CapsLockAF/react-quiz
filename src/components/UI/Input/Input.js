@@ -25,12 +25,8 @@ const Input = props => {
                 onChange={props.onChange}
             />
 
-            {
-                isInvalid(props)
-                    ? <span>{props.errorMessage || 'Wrong value. Please repeat'}</span>
-                    : null
-            }
-
+            { isInvalid(props) ? <span>{props.errorMessage || 'Wrong value. Please repeat'}</span> : null }
+                
         </div>
     )
 }
